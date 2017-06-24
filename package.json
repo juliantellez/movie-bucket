@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A space dedicated to celebrate films",
   "scripts": {
+    "start": "npm run build && node build/server",
+    "build": "npm run build:server",
+    "build:server": "webpack --config scripts/webpack/server.config.js",
     "lint": "eslint app/scripts/",
     "lint:fix": "eslint --fix app/scripts/",
     "test": "mocha --opts ./test/.mocharc"
@@ -17,8 +20,10 @@
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-module-resolver": "^2.7.1",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-node6": "^11.0.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -32,10 +37,12 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-standard": "^3.0.1",
+    "immutable": "^3.8.1",
     "mocha": "^3.4.2",
     "react-addons-test-utils": "^15.6.0",
     "react-test-renderer": "^15.6.1",
-    "sinon": "^2.3.5"
+    "sinon": "^2.3.5",
+    "webpack": "^3.0.0"
   },
   "dependencies": {
     "express": "^4.15.3",
