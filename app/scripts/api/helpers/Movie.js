@@ -1,4 +1,4 @@
-import Movie from '../definitions/Movie'
+import Movie from 'src/definitions/Movie'
 
 export default {
   getFromData (data) {

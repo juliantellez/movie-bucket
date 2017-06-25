@@ -1,7 +1,7 @@
 import I from 'immutable'
 
 import MovieHelper from './Movie'
-import Movies from '../definitions/Movies'
+import Movies from 'src/definitions/Movies'
 
 export default {
   getFromData (data) {
