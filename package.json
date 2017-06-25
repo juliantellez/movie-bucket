@@ -9,7 +9,8 @@
     "build:client": "webpack --config scripts/webpack/client.config.js",
     "lint": "eslint app/scripts/",
     "lint:fix": "eslint --fix app/scripts/",
-    "test": "mocha --opts ./test/.mocharc"
+    "test": "mocha --opts ./test/.mocharc",
+    "test:watch": "mocha --watch --opts ./test/.mocharc"
   },
   "repository": {
     "type": "git",
