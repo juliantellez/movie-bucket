@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 
-const config = require('../../.app-config')
+const config = require('../../app-config')
 
 const nodeModules = fs.readdirSync('node_modules')
 .reduce(function (modules, module) {
