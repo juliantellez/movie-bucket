@@ -23,7 +23,7 @@ const markup = body => (
   </Html>
 )
 
-app.get('/', (req, res) => {q
+app.get('/', (req, res) => {
   const Content = Root // TODO
   const document = toMarkup(markup(toString(<Content />)))
   res.send(document)

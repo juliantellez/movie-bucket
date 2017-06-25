@@ -7,6 +7,11 @@ export default class Html extends React.Component {
     title: PropTypes.string,
     description: PropTypes.string,
     keywords: PropTypes.string,
+    state: PropTypes.object,
+  }
+
+  static defaultPropTypes = {
+    state: {},
   }
 
   render () {
@@ -23,6 +28,7 @@ export default class Html extends React.Component {
         </head>
         <body>
           <main id='main' dangerouslySetInnerHTML={{__html: this.props.children}} />
+          <script dangerouslySetInnerHTML={{__html: `var STATE = ${JSON.stringify(this.props.state)}`}} />
           <script src='static/client.js'/>
         </body>
       </html>
