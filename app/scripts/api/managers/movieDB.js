@@ -1,13 +1,15 @@
 import _ from 'lodash'
 import I from 'immutable'
 
+import MoviesHelper from '../helpers/Movies'
+
 import request from 'src/api/request'
 import config from 'src/config'
 
-const searchRequest = (method, query) => {
+const searchRequest = (method, query, page = 1) => {
   const onGoingRequests = {}
   const CACHE_DURATION = 60000
-  const requestKey = JSON.stringify({method, query})
+  const requestKey = JSON.stringify({method, query, page})
 
   if (!_.isNil(onGoingRequests[requestKey])) {
     return onGoingRequests[requestKey]
@@ -16,6 +18,7 @@ const searchRequest = (method, query) => {
   onGoingRequests[requestKey] = request('get', 'https://api.themoviedb.org/3', 'search', method)
   .query({api_key: config.get('MOVIEDB_API_KEY')})
   .query({query})
+  .query({page})
   .catch(e => {
     delete onGoingRequests[requestKey]
     Promise.reject(e)
@@ -29,7 +32,7 @@ const searchRequest = (method, query) => {
 }
 
 export default {
-  movieSearch: query => searchRequest('movie', query),
-  multiSearch: query => searchRequest('multi', query),
-  personSearch: query => searchRequest('person', query),
+  movieSearch: (query, page) => searchRequest('movie', query, page).then(MoviesHelper.getFromData),
+  multiSearch: (query, page) => searchRequest('multi', query, page),
+  personSearch: (query, page) => searchRequest('person', query, page),
 }
