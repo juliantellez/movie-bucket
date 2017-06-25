@@ -1,5 +1,5 @@
 import I from 'immutable'
-import appConfig from '../../.app-config'
+import appConfig from '../../app-config'
 
 export default I.Record({
   ...appConfig,
