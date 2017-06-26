@@ -23,4 +23,5 @@ const createStore = (reducer, currentState) => {
   }
 }
 
-export default createStore(reducers)
+const currentState = global.window && global.window.STATE
+export default createStore(reducers, currentState)

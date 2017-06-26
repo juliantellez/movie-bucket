@@ -1,4 +1,4 @@
-import movie from './movie'
+import movies from './movies'
 
 const combineReducers = reducers => (state, action) => {
   return Object.keys(reducers).reduce((nextState, key) => {
@@ -8,5 +8,5 @@ const combineReducers = reducers => (state, action) => {
 }
 
 export default combineReducers({
-  movie,
+  movies,
 })

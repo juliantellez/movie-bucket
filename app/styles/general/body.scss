@@ -10,9 +10,11 @@ html {
   padding: 0;
   box-sizing: inherit;
   font-family: $fontFamily;
+  color: $color-slate;
 }
 
 #main {
   height: 100%;
   width: 100%;
+  background-color: $color-blue-dark;
 }
