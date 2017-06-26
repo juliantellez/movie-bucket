@@ -15,7 +15,7 @@ const searchRequest = (method, query, page = 1) => {
     return onGoingRequests[requestKey]
   }
 
-  onGoingRequests[requestKey] = request('get', 'https://api.themoviedb.org/3', 'search', method)
+  onGoingRequests[requestKey] = request('get', 'http://api.themoviedb.org/3', 'search', method)
   .query({api_key: config.get('MOVIEDB_API_KEY')})
   .query({query})
   .query({page})
@@ -25,7 +25,7 @@ const searchRequest = (method, query, page = 1) => {
   })
   .then(res => {
     setTimeout(() => { delete onGoingRequests[requestKey] }, CACHE_DURATION)
-    return I.fromJS(res.body)
+    return res && I.fromJS(res.body)
   })
 
   return onGoingRequests[requestKey]

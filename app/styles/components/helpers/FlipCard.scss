@@ -1,0 +1,64 @@
+.FlipCard {
+  border-radius: 4px;
+
+  $height: 390px;
+  $width: 200px;
+  $width-large: 330px;
+  $height-large: 320px;
+  width: $width;
+  height: $height;
+  max-height: $height;
+  margin: auto;
+  @include media(tablet) {
+    width: $width-large;
+    height: $height-large;
+    max-height: $height-large;
+  }
+
+  &-container {
+    transition: transform .5s;
+    transform-style: preserve-3d;
+    position: relative;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
+  }
+  &-front,
+  &-back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: $color-white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
+  }
+  &-front {
+    left: 0;
+    z-index: 2;
+  }
+  &-back {
+    right: 0;
+    transform: rotateY( 180deg );
+    z-index: 3;
+    height: $height - 25px;
+    max-height: $height;
+    @include media(tablet) {
+      height: $height-large;
+      max-height: $height-large;
+    }
+  }
+  &-footer {
+    border-top: 1px solid $color-grey-light;
+    padding: 5px;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+      color: $color-slate;
+    }
+  }
+  &--flip {
+    .FlipCard {
+      &-container {
+        transform: rotateY( 180deg );
+      }
+    }
+  }
+}
