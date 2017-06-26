@@ -4,8 +4,7 @@ import I from 'immutable'
 import MoviesHelper from '../helpers/Movies'
 
 import request from 'src/api/request'
-// import config from 'src/config'
-// TODO hide KEY as: config.get('MOVIEDB_API_KEY')
+import config from 'src/config'
 
 const searchRequest = (method, query, page = 1) => {
   const onGoingRequests = {}
@@ -17,7 +16,7 @@ const searchRequest = (method, query, page = 1) => {
   }
 
   onGoingRequests[requestKey] = request('get', 'http://api.themoviedb.org/3', 'search', method)
-  .query({api_key: '02ea0cf7b472414ac03c6b24e21f2e53'})
+  .query({api_key: config.get('MOVIEDB_API_KEY')})
   .query({query})
   .query({page})
   .catch(e => {

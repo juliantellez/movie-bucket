@@ -16,13 +16,20 @@ export default class Header extends React.Component {
     actions: PropTypes.object,
   }
 
+  state = {}
+
   _onChange = state => this.setState(state)
 
   _onSubmit (input) {
+    const query = input.wordsInput
+    if (_.isNil(query) || query === this.state.prevSearch) {
+      return
+    }
     const {store, actions} = this.context
-    movieDBManager.movieSearch(input.wordsInput)
+    movieDBManager.movieSearch(query)
     .then(data => {
       store.dispatch(actions.movies.setMovies(data))
+      this.setState({prevSearch: query})
     })
   }
 
@@ -36,7 +43,6 @@ export default class Header extends React.Component {
           onSubmit={this._onSubmit.bind(this)}
         >
           <Input
-            textArea
             name='wordsInput'
             className={cls('input')}
             placeHolder={<TypeWriter />}
